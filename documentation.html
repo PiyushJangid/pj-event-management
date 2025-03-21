@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PJ Event Management - Documentation</title>
+    <style>
+        :root {
+            --primary-color: #4285f4;
+            --secondary-color: #34a853;
+            --accent-color: #fbbc05;
+            --light-gray: #f5f5f5;
+            --dark-gray: #333;
+            --medium-gray: #757575;
+            --code-bg: #f1f1f1;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background-color: #fff;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin: 30px 0 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin: 25px 0 10px;
+            color: var(--secondary-color);
+        }
+
+        h4 {
+            font-size: 1.2rem;
+            margin: 20px 0 10px;
+            color: var(--dark-gray);
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        ul, ol {
+            margin-bottom: 15px;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--code-bg);
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        pre {
+            background-color: var(--code-bg);
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .sidebar {
+            flex: 0 0 280px;
+            margin-right: 40px;
+            position: sticky;
+            top: 20px;
+            align-self: flex-start;
+            background-color: var(--light-gray);
+            padding: 20px;
+            border-radius: 8px;
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+        }
+
+        .content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .toc-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: var(--dark-gray);
+        }
+
+        .toc a {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--dark-gray);
+            font-size: 0.95rem;
+        }
+
+        .toc-l2 {
+            margin-left: 15px;
+            margin-bottom: 5px !important;
+            font-size: 0.9rem !important;
+        }
+
+        .toc-l3 {
+            margin-left: 30px;
+            font-size: 0.85rem !important;
+            color: var(--medium-gray) !important;
+            margin-bottom: 4px !important;
+        }
+
+        .highlight {
+            background-color: var(--light-gray);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .note {
+            background-color: #e1f5fe;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border-left: 4px solid #03a9f4;
+        }
+
+        .tip {
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .warning {
+            background-color: #fff8e1;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border-left: 4px solid #ffc107;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--light-gray);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            margin-top: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #3367d6;
+            text-decoration: none;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: var(--light-gray);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-right: 5px;
+            color: var(--medium-gray);
+        }
+
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                flex: 0 0 100%;
+                margin-right: 0;
+                margin-bottom: 30px;
+                position: static;
+            }
+            
+            .content {
+                flex: 0 0 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>PJ Event Management</h1>
+        <p>Documentation for the comprehensive WordPress events management plugin</p>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="toc-title">Table of Contents</div>
+            <div class="toc">
+                <a href="#introduction">Introduction</a>
+                <a href="#features" class="toc-l2">Features</a>
+                <a href="#installation">Installation</a>
+                <a href="#quick-start">Quick Start</a>
+                <a href="#shortcodes">Shortcodes</a>
+                <a href="#upcoming-events" class="toc-l2">Upcoming Events</a>
+                <a href="#event-management" class="toc-l2">Event Management</a>
+                <a href="#add-edit-event" class="toc-l2">Add/Edit Event</a>
+                <a href="#elementor-widget">Elementor Widget</a>
+                <a href="#content-options" class="toc-l2">Content Options</a>
+                <a href="#style-options" class="toc-l2">Style Options</a>
+                <a href="#plugin-settings">Plugin Settings</a>
+                <a href="#general-settings" class="toc-l2">General Settings</a>
+                <a href="#display-settings" class="toc-l2">Display Settings</a>
+                <a href="#advanced-usage">Advanced Usage</a>
+                <a href="#custom-templates" class="toc-l2">Custom Templates</a>
+                <a href="#css-customization" class="toc-l2">CSS Customization</a>
+                <a href="#javascript-events" class="toc-l2">JavaScript Events</a>
+                <a href="#hooks-filters" class="toc-l2">Hooks & Filters</a>
+                <a href="#troubleshooting">Troubleshooting</a>
+                <a href="#common-issues" class="toc-l2">Common Issues</a>
+                <a href="#support" class="toc-l2">Support</a>
+                <a href="#credits">Credits</a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <section id="introduction">
+                <h2>Introduction</h2>
+                <p>PJ Event Management is a comprehensive WordPress plugin designed to create, manage, and display events on your website. Whether you need to showcase upcoming events, allow users to add events, or integrate events with Elementor, this plugin offers all the tools and flexibility you need.</p>
+
+                <div class="highlight">
+                    <h3 id="features">Features</h3>
+                    <ul>
+                        <li><strong>Event Management</strong>: Create, edit, and delete events with custom details like date, time, and location</li>
+                        <li><strong>Flexible Display Options</strong>: Show events in grids or lists with customizable layouts</li>
+                        <li><strong>Filtering Capabilities</strong>: Filter events by upcoming, past, or all events</li>
+                        <li><strong>Elementor Integration</strong>: Dedicated Elementor widget for seamless page builder integration</li>
+                        <li><strong>Shortcodes</strong>: Multiple shortcodes for displaying events anywhere on your site</li>
+                        <li><strong>Responsive Design</strong>: Mobile-friendly layouts that adapt to any screen size</li>
+                        <li><strong>User Authorization</strong>: Control who can manage events on your site</li>
+                        <li><strong>Customizable Templates</strong>: Easily style events to match your website's design</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="installation">
+                <h2>Installation</h2>
+                <p>Follow these steps to install the PJ Event Management plugin:</p>
+                <ol>
+                    <li>Download the plugin zip file</li>
+                    <li>Log in to your WordPress admin dashboard</li>
+                    <li>Navigate to <strong>Plugins → Add New</strong></li>
+                    <li>Click the <strong>Upload Plugin</strong> button at the top of the page</li>
+                    <li>Select the downloaded zip file</li>
+                    <li>Click <strong>Install Now</strong></li>
+                    <li>After installation completes, click <strong>Activate Plugin</strong></li>
+                </ol>
+                <div class="tip">
+                    <p><strong>Tip:</strong> After activation, you can access the plugin settings at <strong>Events → Settings</strong> in your WordPress admin menu.</p>
+                </div>
+            </section>
+
+            <section id="quick-start">
+                <h2>Quick Start</h2>
+                <p>Here's how to quickly start using the PJ Event Management plugin:</p>
+
+                <h3>Display Events with Shortcode</h3>
+                <p>Add this shortcode to any page or post to display upcoming events:</p>
+                <pre><code>[pj_upcoming_events]</code></pre>
+
+                <h3>Display Events with Elementor</h3>
+                <ol>
+                    <li>Edit a page with Elementor</li>
+                    <li>Search for "PJ Events" in the widget panel</li>
+                    <li>Drag the widget to your desired location</li>
+                    <li>Customize display options in the widget settings</li>
+                </ol>
+            </section>
+
+            <section id="shortcodes">
+                <h2>Shortcodes</h2>
+                <p>The plugin provides several shortcodes to display events in different ways:</p>
+
+                <h3 id="upcoming-events">Upcoming Events Shortcode</h3>
+                <pre><code>[pj_events]</code></pre>
+                <p>This shortcode displays a grid of upcoming events with various customization options.</p>
+
+                <h4>Parameters:</h4>
+                <table>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                        <th>Default</th>
+                    </tr>
+                    <tr>
+                        <td><code>per_page</code></td>
+                        <td>Number of events to display</td>
+                        <td>From plugin settings</td>
+                    </tr>
+                    <tr>
+                        <td><code>columns</code></td>
+                        <td>Number of columns (1-4)</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td><code>date_filter</code></td>
+                        <td>Filter events by date: "upcoming", "past", or "all"</td>
+                        <td>upcoming</td>
+                    </tr>
+                    <tr>
+                        <td><code>pagination</code></td>
+                        <td>Pagination style: "standard", "load_more", "infinite", or "none"</td>
+                        <td>standard</td>
+                    </tr>
+                    <tr>
+                        <td><code>show_date</code></td>
+                        <td>Display event date: "yes" or "no"</td>
+                        <td>yes</td>
+                    </tr>
+                    <tr>
+                        <td><code>show_time</code></td>
+                        <td>Display event time: "yes" or "no"</td>
+                        <td>yes</td>
+                    </tr>
+                    <tr>
+                        <td><code>show_location</code></td>
+                        <td>Display event location: "yes" or "no"</td>
+                        <td>yes</td>
+                    </tr>
+                    <tr>
+                        <td><code>show_excerpt</code></td>
+                        <td>Display event excerpt: "yes" or "no"</td>
+                        <td>yes</td>
+                    </tr>
+                    <tr>
+                        <td><code>show_filter_toggle</code></td>
+                        <td>Show filter buttons: "yes" or "no"</td>
+                        <td>no</td>
+                    </tr>
+                </table>
+
+                <h4>Example:</h4>
+                <pre><code>[pj_events per_page="6" columns="3" show_filter_toggle="yes"]</code></pre>
+
+                <div class="note">
+                    <p><strong>Note:</strong> You can combine multiple parameters to create a highly customized event display.</p>
+                </div>
+
+                <h3 id="event-management">Event Management Shortcode</h3>
+                <pre><code>[pj_all_events_management]</code></pre>
+                <p>For admin users to manage events. This shortcode displays a table view of events with options to edit or delete them. It shows 10 events per page by default.</p>
+
+                <h4>Parameters:</h4>
+                <table>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                        <th>Default</th>
+                    </tr>
+                    <tr>
+                        <td><code>per_page</code></td>
+                        <td>Number of events to display</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td><code>pagination</code></td>
+                        <td>Pagination style</td>
+                        <td>standard</td>
+                    </tr>
+                </table>
+
+                <h4>Example:</h4>
+                <pre><code>[pj_all_events_management per_page="15"]</code></pre>
+
+                <div class="warning">
+                    <p><strong>Important:</strong> This shortcode will only work for users with the appropriate permissions to manage events.</p>
+                </div>
+
+                <h3 id="add-edit-event">Add/Edit Event Shortcode</h3>
+                <pre><code>[pj_add_edit_event]</code></pre>
+                <p>Creates a form for adding or editing events. This is ideal for front-end event submission.</p>
+            </section>
+
+            <section id="elementor-widget">
+                <h2>Elementor Widget</h2>
+                <p>The plugin adds a "PJ Events" widget to Elementor that provides a visual way to add and configure events on your pages.</p>
+
+                <div class="highlight">
+                    <h3 id="content-options">Content Options</h3>
+                    <ul>
+                        <li><strong>Date Filter</strong>: Show upcoming, past, or all events</li>
+                        <li><strong>Posts Per Page</strong>: Number of events to display</li>
+                        <li><strong>Columns</strong>: Number of columns in the grid (1-4)</li>
+                        <li><strong>Pagination Type</strong>: Standard pagination, load more button, infinite scroll, or none</li>
+                        <li><strong>Show Filter Toggle</strong>: Enable filtering between upcoming, past, and all events</li>
+                        <li><strong>Display Options</strong>: Toggle visibility of date, time, location, and excerpt</li>
+                    </ul>
+                </div>
+
+                <h3 id="style-options">Style Options</h3>
+                <ul>
+                    <li><strong>Title Color</strong>: Color for the widget title</li>
+                    <li><strong>Event Title Color</strong>: Color for individual event titles</li>
+                    <li><strong>Meta Info Color</strong>: Color for date, time, and location information</li>
+                    <li><strong>Button Colors</strong>: Customize button background and text colors</li>
+                    <li><strong>Spacing</strong>: Control spacing between events</li>
+                </ul>
+            </section>
+
+            <section id="plugin-settings">
+                <h2>Plugin Settings</h2>
+                <p>Access plugin settings at <strong>Events → Settings</strong> in your WordPress admin.</p>
+
+                <h3 id="general-settings">General Settings</h3>
+                <ul>
+                    <li><strong>Events Per Page</strong>: Default number of events to display (used when not specified in shortcode)</li>
+                    <li><strong>Date Format</strong>: Format for displaying event dates</li>
+                    <li><strong>Time Format</strong>: Format for displaying event times</li>
+                    <li><strong>Enable Caching</strong>: Cache events to improve performance</li>
+                    <li><strong>User Roles</strong>: Select which user roles can manage events</li>
+                </ul>
+
+                <h3 id="display-settings">Display Settings</h3>
+                <ul>
+                    <li><strong>Layout</strong>: Default layout for events display</li>
+                    <li><strong>Image Size</strong>: Default size for event featured images</li>
+                    <li><strong>Excerpt Length</strong>: Number of words to show in excerpts</li>
+                    <li><strong>Read More Text</strong>: Text for the "read more" button</li>
+                </ul>
+            </section>
+
+            <section id="advanced-usage">
+                <h2>Advanced Usage</h2>
+                <p>For developers and advanced users who want to customize the plugin's functionality and appearance.</p>
+
+                <h3 id="custom-templates">Custom Templates</h3>
+                <p>To override the default templates, copy the template files from the plugin's <code>templates</code> directory to your theme in a folder named <code>pj-event-management</code>.</p>
+
+                <div class="note">
+                    <p><strong>Example Structure:</strong></p>
+                    <pre><code>your-theme/
+├── pj-event-management/
+│   ├── single-pj_event.php
+│   ├── archive-pj_event.php
+│   └── event-grid.php</code></pre>
+                </div>
+
+                <h3 id="css-customization">CSS Customization</h3>
+                <p>The plugin includes these CSS classes for styling:</p>
+
+                <table>
+                    <tr>
+                        <th>CSS Class</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td><code>.pj-upcoming-events</code></td>
+                        <td>Main container</td>
+                    </tr>
+                    <tr>
+                        <td><code>.pj-events-title</code></td>
+                        <td>Section title</td>
+                    </tr>
+                    <tr>
+                        <td><code>.pj-events-grid</code></td>
+                        <td>Events grid container</td>
+                    </tr>
+                    <tr>
+                        <td><code>.pj-event-card</code></td>
+                        <td>Individual event container</td>
+                    </tr>
+                    <tr>
+                        <td><code>.pj-event-thumbnail</code></td>
+                        <td>Event featured image</td>
+                    </tr>
+                    <tr>
+                        <td><code>.pj-event-title</code></td>
+                        <td>Event title</td>
+                    </tr>
+                    <tr>
+                        <td><code>.pj-event-meta</code></td>
+                        <td>Container for date, time, location</td>
+                    </tr>
+                    <tr>
+                        <td><code>.pj-event-date</code></td>
+                        <td>Event date</td>
+                    </tr>
+                    <tr>
+                        <td><code>.pj-event-time</code></td>
+                        <td>Event time</td>
+                    </tr>
+                    <tr>
+                        <td><code>.pj-event-location</code></td>
+                        <td>Event location</td>
+                    </tr>
+                    <tr>
+                        <td><code>.pj-event-excerpt</code></td>
+                        <td>Event excerpt</td>
+                    </tr>
+                    <tr>
+                        <td><code>.pj-event-toggle-filter</code></td>
+                        <td>Filter toggle buttons</td>
+                    </tr>
+                </table>
+
+                <h3 id="javascript-events">JavaScript Events</h3>
+                <p>The plugin triggers these events for developers:</p>
+
+                <ul>
+                    <li><code>pj_events_loaded</code> - Fired after events are loaded</li>
+                    <li><code>pj_events_filtered</code> - Fired after events are filtered</li>
+                    <li><code>pj_more_events_loaded</code> - Fired after more events are loaded via AJAX</li>
+                </ul>
+
+                <h4>Example usage:</h4>
+                <pre><code>jQuery(document).on('pj_events_loaded', function() {
+  console.log('Events have been loaded');
+  // Your custom code here
+});</code></pre>
+
+                <h3 id="hooks-filters">Hooks and Filters</h3>
+                <p>For developers, the plugin provides these hooks:</p>
+
+                <h4>Actions:</h4>
+                <ul>
+                    <li><code>pj_event_before_render</code> - Before events are rendered</li>
+                    <li><code>pj_event_after_render</code> - After events are rendered</li>
+                    <li><code>pj_event_before_form</code> - Before the add/edit form is displayed</li>
+                    <li><code>pj_event_after_form</code> - After the add/edit form is displayed</li>
+                    <li><code>pj_event_saved</code> - After an event is saved</li>
+                </ul>
+
+                <h4>Filters:</h4>
+                <ul>
+                    <li><code>pj_event_query_args</code> - Modify event query arguments</li>
+                    <li><code>pj_event_display_date</code> - Modify the displayed date format</li>
+                    <li><code>pj_event_display_time</code> - Modify the displayed time format</li>
+                    <li><code>pj_event_excerpt_length</code> - Modify excerpt length</li>
+                    <li><code>pj_event_meta_fields</code> - Modify event meta fields</li>
+                </ul>
+
+                <div class="tip">
+                    <p><strong>Example filter usage:</strong></p>
+                    <pre><code>function my_custom_query_args($args) {
+    // Modify the query arguments
+    $args['posts_per_page'] = 12;
+    return $args;
+}
+add_filter('pj_event_query_args', 'my_custom_query_args');</code></pre>
+                </div>
+            </section>
+
+            <section id="troubleshooting">
+                <h2>Troubleshooting</h2>
+
+                <h3 id="common-issues">Common Issues</h3>
+                <div class="highlight">
+                    <ol>
+                        <li>
+                            <strong>Events not displaying</strong>
+                            <p>Check if date filter is set correctly. If you're using "upcoming" filter, make sure you have events with future dates.</p>
+                        </li>
+                        <li>
+                            <strong>Styling issues</strong>
+                            <p>Make sure your theme CSS is not conflicting with the plugin styles. You can add custom CSS to override specific styles.</p>
+                        </li>
+                        <li>
+                            <strong>Pagination not working</strong>
+                            <p>Ensure permalinks are set correctly in WordPress settings. Try resetting permalinks by going to Settings → Permalinks and clicking Save.</p>
+                        </li>
+                        <li>
+                            <strong>Images not displaying</strong>
+                            <p>Check if featured images are set for your events. The plugin uses the featured image for the event thumbnail.</p>
+                        </li>
+                        <li>
+                            <strong>Event deletion not working</strong>
+                            <p>Clear browser cache or check the browser console for JavaScript errors. Ensure you have proper permissions to delete events.</p>
+                        </li>
+                        <li>
+                            <strong>AJAX operations failing</strong>
+                            <p>Verify nonce configuration and user permissions. Check browser console for any JavaScript errors that might be occurring.</p>
+                        </li>
+                    </ol>
+                </div>
+
+                <h3 id="support">Support</h3>
+                <p>For additional help:</p>
+                <ol>
+                    <li>Check the plugin documentation (this document)</li>
+                    <li>Contact support at <a href="mailto:support@piyushjangid.in">support@piyushjangid.in</a></li>
+                </ol>
+            </section>
+
+            <section id="changelog">
+                <h2>Changelog</h2>
+                <h3>Version 1.0.0</h3>
+                <ul>
+                    <li>Initial release</li>
+                </ul>
+            </section>
+
+            <section id="credits">
+                <h2>Credits</h2>
+                <p>Developed by Piyush Jangid</p>
+                <p>Website: <a href="https://piyushjangid.in" target="_blank">https://piyushjangid.in</a></p>
+            </section>
+
+            <div class="footer">
+                <p>Copyright © 2025 PJ Event Management. All rights reserved.</p>
+            </div>
+        </main>
+    </div>
+</body>
+</html> 

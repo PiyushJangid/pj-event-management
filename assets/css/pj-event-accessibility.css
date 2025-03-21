@@ -1,0 +1,289 @@
+/**
+ * PJ Event Management Accessibility Styles
+ * These styles enhance accessibility per WCAG 2.1 standards
+ */
+
+/* Accessibility Helpers */
+.screen-reader-text {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    word-wrap: normal !important;
+}
+
+.screen-reader-text:focus {
+    background-color: #f1f1f1;
+    border-radius: 3px;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+    clip: auto !important;
+    clip-path: none;
+    color: #046bd2;
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    height: auto;
+    left: 5px;
+    line-height: normal;
+    padding: 15px 23px 14px;
+    text-decoration: none;
+    top: 5px;
+    width: auto;
+    z-index: 100000;
+}
+
+/* Focus Styles */
+.pj-event-readmore:focus,
+.pj-event-card a:focus,
+.pj-events-pagination a:focus,
+.page-numbers:focus,
+.pj-event-filter-link:focus,
+button:focus {
+    outline: 2px solid #046bd2;
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (forced-colors: active) {
+    .pj-event-filter-link.active,
+    .pj-event-readmore,
+    .pj-events-pagination .page-numbers.current,
+    .pj-load-more-button {
+        forced-color-adjust: none;
+        border: 2px solid ButtonText;
+    }
+    
+    .pj-event-card {
+        border: 1px solid ButtonText;
+    }
+    
+    .pj-event-meta i {
+        forced-color-adjust: auto;
+    }
+}
+
+/* Reduce Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .pj-event-card,
+    .pj-event-card:hover,
+    .pj-event-thumbnail img,
+    .pj-event-card:hover .pj-event-thumbnail img,
+    .pj-event-readmore,
+    .pj-event-filter-link,
+    .pj-load-more-button {
+        transition: none !important;
+        transform: none !important;
+        animation: none !important;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.pj-event-visible {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* High Contrast Color Support */
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
+    .pj-event-readmore {
+        background-color: ButtonText;
+        color: ButtonFace;
+    }
+    
+    .pj-event-filter-link.active {
+        background-color: ButtonText;
+        color: ButtonFace;
+    }
+    
+    .pj-events-pagination .page-numbers.current {
+        background-color: ButtonText;
+        color: ButtonFace;
+    }
+    
+    .pj-event-meta i {
+        color: CanvasText;
+    }
+}
+
+/* Focus Visible Polyfill */
+.js-focus-visible :focus:not(.focus-visible) {
+    outline: none;
+}
+
+.js-focus-visible .focus-visible {
+    outline: 2px solid #046bd2;
+    outline-offset: 2px;
+}
+
+/* Skip Link */
+.pj-skip-link {
+    background-color: #f1f1f1;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+    color: #046bd2;
+    font-weight: 700;
+    height: auto;
+    left: 6px;
+    line-height: normal;
+    padding: 15px 23px 14px;
+    position: absolute;
+    text-decoration: none;
+    top: -100px;
+    width: auto;
+    z-index: 100000;
+    transition: top 0.3s ease;
+}
+
+.pj-skip-link:focus {
+    top: 6px;
+}
+
+/* Active State for Interactive Elements */
+.pj-event-filter-link:active,
+.pj-event-readmore:active,
+.pj-load-more-button:active,
+.pj-events-pagination .page-numbers:active {
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* ARIA States */
+[aria-disabled="true"] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+[aria-busy="true"] {
+    cursor: progress;
+}
+
+[aria-selected="true"] {
+    background-color: #046bd2;
+    color: #fff;
+}
+
+/* Loading States */
+.pj-loading {
+    position: relative;
+}
+
+.pj-loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-top-color: #046bd2;
+    border-radius: 50%;
+    animation: pj-spinner 0.8s linear infinite;
+}
+
+@keyframes pj-spinner {
+    to { transform: rotate(360deg); }
+}
+
+/* WCAG Color Contrast Improvements */
+.pj-event-meta {
+    color: #666; /* 4.5:1 contrast ratio against white */
+}
+
+.pj-event-excerpt {
+    color: #333; /* 10:1 contrast ratio against white */
+}
+
+.pj-no-events {
+    color: #555; /* 7:1 contrast ratio against white */
+}
+
+/* Keyboard Focus Styles */
+.pj-event-filter-link:focus-visible,
+.pj-event-readmore:focus-visible,
+.pj-load-more-button:focus-visible {
+    outline: 3px solid #046bd2;
+    outline-offset: 3px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Visible Labels for Icon-Only Controls */
+.pj-icon-button {
+    position: relative;
+}
+
+.pj-icon-button .icon-label {
+    position: absolute;
+    left: -9999px;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+}
+
+.pj-icon-button:focus .icon-label,
+.pj-icon-button:hover .icon-label {
+    position: absolute;
+    background: #046bd2;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 14px;
+    left: 100%;
+    top: 0;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    margin-left: 10px;
+    white-space: nowrap;
+    z-index: 1;
+}
+
+/* Large Click Areas */
+.pj-event-readmore,
+.pj-load-more-button,
+.pj-event-filter-link,
+.page-numbers {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Text Size Adjustments */
+@media (min-width: 768px) {
+    .pj-events-title {
+        font-size: 28px;
+    }
+    
+    .pj-event-title {
+        font-size: 20px;
+    }
+    
+    .pj-event-excerpt {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 767px) {
+    .pj-events-title {
+        font-size: 24px;
+    }
+    
+    .pj-event-title {
+        font-size: 18px;
+    }
+    
+    .pj-event-excerpt {
+        font-size: 14px;
+    }
+} 

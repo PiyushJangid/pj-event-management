@@ -1,0 +1,53 @@
+/**
+ * PJ Event Management - Elementor Widget Styles
+ * These styles ensure the Elementor widget style tab controls work correctly
+ */
+
+/* Make sure colors applied in Elementor override theme styles */
+.elementor-widget-pj-events .pj-events-title,
+.elementor-widget-pj-events .pj-archive-title,
+.elementor-widget-pj-events .pj-related-title {
+    color: inherit !important;
+}
+
+.elementor-widget-pj-events .pj-event-title a {
+    color: inherit !important;
+}
+
+.elementor-widget-pj-events .pj-event-meta,
+.elementor-widget-pj-events .pj-event-meta .meta-value {
+    color: inherit !important;
+}
+
+.elementor-widget-pj-events .pj-event-readmore {
+    background-color: inherit !important;
+    color: inherit !important;
+}
+
+.elementor-widget-pj-events .pj-event-readmore .pj-readmore-text {
+    color: inherit !important;
+}
+
+/* Fix spacing controls */
+.elementor-widget-pj-events .pj-events-grid {
+    grid-gap: inherit !important;
+}
+
+/* Fix hover states */
+.elementor-widget-pj-events .pj-event-readmore:hover .dashicons {
+    transform: translateX(3px);
+}
+
+/* Icon fixes */
+.elementor-widget-pj-events .pj-event-meta i.dashicons {
+    color: inherit !important;
+}
+
+/* Mobile optimizations */
+@media (max-width: 767px) {
+    .elementor-widget-pj-events .pj-event-readmore {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+} 

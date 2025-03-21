@@ -1,0 +1,143 @@
+/**
+ * PJ Event Management Admin Styles
+ */
+
+/* Meta Box Styles */
+.pj-event-meta-box {
+    margin-bottom: 20px;
+}
+
+.pj-event-meta-box label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.pj-event-meta-box input[type="text"],
+.pj-event-meta-box input[type="date"],
+.pj-event-meta-box input[type="time"] {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+/* Settings Page Styles */
+.pj-event-management-settings {
+    max-width: 800px;
+    margin-top: 20px;
+}
+
+.pj-event-management-settings h2 {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.pj-settings-section {
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.pj-settings-section h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    color: #046bd2;
+}
+
+.pj-settings-field {
+    margin-bottom: 15px;
+}
+
+.pj-settings-field label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.pj-settings-field input[type="text"],
+.pj-settings-field select {
+    width: 100%;
+    max-width: 400px;
+}
+
+.pj-settings-field .description {
+    display: block;
+    margin-top: 5px;
+    color: #777;
+    font-style: italic;
+}
+
+.pj-settings-submit {
+    margin-top: 20px;
+}
+
+/* Cache Settings */
+.pj-cache-settings {
+    margin-top: 15px;
+    padding: 15px;
+    background: #f9f9f9;
+    border-left: 4px solid #046bd2;
+    margin-bottom: 20px;
+}
+
+.pj-cache-settings h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #046bd2;
+}
+
+.pj-cache-status {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.pj-cache-enabled {
+    background-color: rgba(4, 107, 210, 0.1);
+    border: 1px solid rgba(4, 107, 210, 0.2);
+    color: #046bd2;
+}
+
+.pj-cache-disabled {
+    background-color: rgba(222, 85, 85, 0.1);
+    border: 1px solid rgba(222, 85, 85, 0.2);
+    color: #de5555;
+}
+
+.pj-cache-clear-button {
+    background-color: #046bd2;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.2s ease;
+}
+
+.pj-cache-clear-button:hover {
+    background-color: #035bb9;
+}
+
+.pj-cache-notice {
+    padding: 12px 15px;
+    background-color: #e8f4fd;
+    border-left: 4px solid #046bd2;
+    margin: 20px 0;
+}
+
+.pj-cache-notice.success {
+    background-color: #ecf9ec;
+    border-left-color: #46b450;
+}
+
+.pj-cache-notice.error {
+    background-color: #fbeaea;
+    border-left-color: #dc3232;
+} 
